@@ -1,0 +1,20 @@
+{
+  "proiezioni": [
+    {
+      "film": "Avengers: Endgame",
+      "orario": "2023-06-28 18:00"
+    },
+    {
+      "film": "Spider-Man: No Way Home",
+      "orario": "2023-06-28 20:30"
+    },
+    {
+      "film": "The Lion King",
+      "orario": "2023-06-29 14:00"
+    },
+    {
+      "film": "Inception",
+      "orario": "2023-06-29 17:30"
+    }
+  ]
+}
