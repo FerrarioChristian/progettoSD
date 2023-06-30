@@ -6,7 +6,7 @@
 
 * Nome Cognome (Matricola) <email>
 * Andrea Lanza	887501 a.lanza13@campus.unimib.it
-* Christiano Ferrario  886230 c.ferrario30@campus.unimib.it
+* Christian Ferrario  886230 c.ferrario30@campus.unimib.it
 * Davide Bonfanti  873293 d.bonfanti13@campus.unimib.it
 
 #### UTILIZZO
