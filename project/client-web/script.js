@@ -127,7 +127,7 @@ function eliminaPrenotazione() {
 
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4) {
-      if (xhr.status === 201) {
+      if (xhr.status === 200) {
         alert('Prenotazione eliminata con successo!');
       } else {
         alert('Nessuna prenotazione presente.');
