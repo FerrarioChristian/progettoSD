@@ -1,6 +1,6 @@
 # Protocollo di Comunicazione TCP
 
-Di seguito viene descritto il protocollo di comunicazione TCP utilizzato per le operazioni di creazione, eliminazione e modifica delle prenotazioni tramite API REST.
+Di seguito viene descritto il protocollo di comunicazione TCP utilizzato per la comunicazione tra server web e database in merito alle operazioni di creazione, eliminazione e modifica delle prenotazioni (provenienti da un client web tramite api REST).
 
 
 ## Creazione di una Prenotazione
