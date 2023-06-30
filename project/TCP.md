@@ -30,7 +30,7 @@ Di seguito viene descritto il protocollo di comunicazione TCP utilizzato per la 
 6. Il database invia una conferma di successo al server web.
    - Il server web riceve la conferma di successo e risponde al cliente con una risposta HTTP con stato "CREATED".
 
-7. Il cliente (API REST) riceve la risposta del server web.
+7. Il client riceve la risposta del server web.
    - Il cliente riceve la risposta HTTP con stato "CREATED" per indicare che la prenotazione è stata creata con successo.
 
 
