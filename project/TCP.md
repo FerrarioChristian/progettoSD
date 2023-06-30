@@ -11,11 +11,12 @@ Di seguito viene descritto il protocollo di comunicazione TCP utilizzato per la 
 
 2. Il server web utilizza la classe Prenotazioni per gestire la richiesta del cliente.
    - La classe Prenotazioni effettua una connessione TCP con il database per comunicare con la classe Database.
-   - la sintassi dei messaggi in uscita da Prenotazioni ed in arrivo sul Database è la seguente -> "operazione + ";" + proiezione + ";" + key  + ";" + String.join(",", valore)" :
+   - la sintassi dei messaggi (stringa) in uscita da Prenotazioni ed in arrivo sul Database è la seguente -> "operazione + ";" + proiezione + ";" + key  + ";" + String.join(",", valore)" :
    - dove operazione è il tipo di operazione da effettuare sul database
    - proiezione si riferisce al film a cui la prenotazione si riferisce
    - la chiave identifica la prenotazione in modo univoco
    - il valore rappresenta il posto/i
+   - i punti e virgola servono a separare i campi della stringa 
 
 3. Il server web crea una connessione TCP con il database.
    - Il server web stabilisce una connessione TCP con l'indirizzo IP e la porta del database (localhost:3030).
