@@ -1,6 +1,6 @@
 # Progetto Sistemi Distribuiti 2022-2023
 
-Lo scheletro propone degli esempi dei tre componenti da cui partire.
+
 
 ## Componenti del gruppo
 
