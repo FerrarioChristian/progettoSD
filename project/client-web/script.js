@@ -16,6 +16,8 @@ function showSeats(film) {
 
   var table = document.getElementById('seat-map');
   table.innerHTML = '';
+  var nome = document.getElementById('film-name');
+  nome.innerHTML = film;
 
   for (var i = 0; i < seats.length; i++) {
     var row = document.createElement('tr');
@@ -53,7 +55,7 @@ function generateBookingKey() {
   var bookingKey = timestamp + '_' + random;
 
   // Imposta il cookie con la chiave generata
-  document.cookie = 'bookingKey=' + bookingKey + '; path=/';
+  document.cookie = 'bookingKey=' + bookingKey + '; path=/; SameSite=None; Secure';
 }
 
 function getBookingKey() {
@@ -154,8 +156,8 @@ window.onload = function() {
     xhr.onreadystatechange = function() {
       if (xhr.readyState === 4 && xhr.status === 200) {
         var response = JSON.parse(xhr.responseText);
-        var proiezioni = response.proiezioni;
-		console.log(response);
+        var JSONResponse = JSON.parse(response);
+		var proiezioni = JSONResponse.proiezioni;
 
         // Popola i nomi dei bottoni con i dati del JSON
         var filmList = document.getElementById('film-list');

@@ -8,7 +8,7 @@ public class GestisciPrenotazioni {
 		
 	}
 	
-	public boolean nuovaPrenotazione(String[] dati) {
+	public synchronized boolean nuovaPrenotazione(String[] dati) {
 		//verifico che l'utente non abbia gia una prenotazione
 		if(Main.proiezioni_db.getData(dati[1]) != null && Main.proiezioni_db.getData(dati[1]).contains(dati[2])) {
 			return false;
@@ -47,7 +47,7 @@ public class GestisciPrenotazioni {
 		return true;
 	}
 
-	public boolean modificaPrenotazione(String[] dati) {
+	public synchronized boolean modificaPrenotazione(String[] dati) {
 		if(Main.proiezioni_db.getData(dati[1]).contains(dati[2])) {
 			eliminaPrenotazione(dati);
 			nuovaPrenotazione(dati);
@@ -57,7 +57,7 @@ public class GestisciPrenotazioni {
 		}
 	}
 	
-	public boolean eliminaPrenotazione(String[] dati) {
+	public synchronized boolean eliminaPrenotazione(String[] dati) {
 		if(Main.proiezioni_db.getData(dati[1]) != null && Main.proiezioni_db.getData(dati[1]).contains(dati[2])) {
 			String[] prenotazioni = Main.proiezioni_db.getData(dati[1]).split(";");
 			String[] nuove_prenotazioni = removeElements(prenotazioni, dati[2]);

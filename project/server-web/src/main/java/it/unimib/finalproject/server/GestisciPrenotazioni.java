@@ -16,10 +16,10 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 @Path("prenota")
-public class Prenotazioni {
+public class GestisciPrenotazioni {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response nuovaPrenotazione(String body) throws UnknownHostException, IOException {
+	public synchronized Response nuovaPrenotazione(String body) throws UnknownHostException, IOException {
 		var prenotazione = new Prenotazione();
     	
     	 try {
@@ -29,8 +29,8 @@ public class Prenotazioni {
              // Il nome e il numero ci devono essere.
              if (prenotazione.getKey() == null || prenotazione.getPosti().length == 0)
                  return Response.status(Response.Status.BAD_REQUEST).build();
-
-             Socket socket = new Socket("localhost", 3030);
+             
+			 Socket socket = new Socket("localhost", 3030);
              PrintStream out = new PrintStream(socket.getOutputStream(), true);
              BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
              
@@ -58,12 +58,11 @@ public class Prenotazioni {
              System.out.println(dato);
              
              if(dato.equals("false")) {
+            	 socket.close();
             	 return Response.status(Response.Status.CONFLICT).build();            	 
              }
              
-             
-             
-             
+        	 socket.close();
          } catch (JsonParseException | JsonMappingException e) {
              System.out.println(e);
              return Response.status(Response.Status.BAD_REQUEST).build();
@@ -71,7 +70,6 @@ public class Prenotazioni {
              System.out.println(e);
              return Response.serverError().build();
          }
-
     	 return Response.status(Response.Status.CREATED).build();
     	
 	}
@@ -79,7 +77,7 @@ public class Prenotazioni {
 	@Path("/elimina")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response eliminaPrenotazione(String body) {
+	public synchronized Response eliminaPrenotazione(String body) {
 		var prenotazione = new Prenotazione();
     	
    	 try {
@@ -116,11 +114,14 @@ public class Prenotazioni {
             }
             
             if(dato.equals("false")) {
-           	 return Response.status(Response.Status.CONFLICT).build();            	 
+
+           	 socket.close();
+           	 return Response.status(Response.Status.NOT_FOUND).build();            	 
             }
             
             
-            
+
+       	 socket.close();
         } catch (JsonParseException | JsonMappingException e) {
             System.out.println(e);
             return Response.status(Response.Status.BAD_REQUEST).build();
@@ -136,7 +137,7 @@ public class Prenotazioni {
 	@Path("/aggiorna")
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response modificaPrenotazione(String body) {
+	public synchronized Response modificaPrenotazione(String body) {
 		var prenotazione = new Prenotazione();
     	
    	 try {
@@ -175,12 +176,13 @@ public class Prenotazioni {
             System.out.println(dato);
             
             if(dato.equals("false")) {
+
+           	 socket.close();
            	 return Response.status(Response.Status.CONFLICT).build();            	 
             }
             
-            
-            
-            
+
+       	 socket.close();
         } catch (JsonParseException | JsonMappingException e) {
             System.out.println(e);
             return Response.status(Response.Status.BAD_REQUEST).build();

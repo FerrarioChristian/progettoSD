@@ -21,10 +21,8 @@ public class Main {
      */
     public static void startServer() {
         try {
-            var server = new ServerSocket(PORT);
-            
-            
-
+            @SuppressWarnings("resource")
+			ServerSocket server = new ServerSocket(PORT);
             System.out.println("Database listening at localhost:" + PORT);
             while (true)
                 new Handler(server.accept()).start();
@@ -71,8 +69,6 @@ public class Main {
                 	case "modifica":
                 		out.println(gp.modificaPrenotazione(dati));
                 }
-                
-                
                 
                 in.close();
                 out.close();

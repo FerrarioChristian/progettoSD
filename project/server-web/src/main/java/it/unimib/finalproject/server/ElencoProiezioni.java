@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 public class ElencoProiezioni {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response restituisciElencoProiezioni() {
+	public synchronized Response restituisciElencoProiezioni() {
 		String listaProiezioni = "";
 		try {
 			listaProiezioni = Files.readString(Paths.get(".\\lista_proiezioni.txt"));
