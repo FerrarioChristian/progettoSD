@@ -12,7 +12,7 @@
 #### UTILIZZO
 
 #### ClientWeb
-
+Il clientweb è **FIREFOX (chrome non è attualmente supportato)**.
 Questo è un esempio di implementazione di un client web per interagire con un server tramite richieste HTTP. Il client consente di visualizzare i posti disponibili per una determinata proiezione cinematografica e di effettuare operazioni di prenotazione, aggiornamento ed eliminazione.
 
 ### Dipendenze
