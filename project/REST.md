@@ -1,54 +1,92 @@
 # Progetto Sistemi Distribuiti 2022-2023 - API REST
 
-Documentazione delle API REST di esempio. Si assume che i dati vengano scambiati in formato JSON.
+Di seguito viene fornita la documentazione dell'API REST del progetto "Gestione Prenotazioni".
 
-## `/contacts`
 
-Ogni risorsa ha la sua sezione. In questo caso la risorsa da documentare è quella dei contatti.
+## `/prenota`
 
-### GET
+Questa risorsa consente di effettuare una nuova prenotazione.
 
-**Descrizione**: una breve descrizione di cosa fa il metodo applicato alla risorsa. In questo caso restituisce l'elenco dei contatti salvati.
-
-**Parametri**: un elenco dei parametri se previsti, sia nel percorso (esempio `/contacts/{id}`) che nella richiesta (esempio `/contacts?id={id}`) o anche negli header. In questo caso non sono previsti.
-
-**Body richiesta**: cosa ci deve essere nel body della richiesta. In questo caso nulla perché è una GET.
-
-**Risposta**: cosa viene restituito in caso di successo. In questo caso viene restituito la rappresentazione in JSON del contatto, un oggetto JSON con i campi `id` (un intero), `name` e `number` (due stringhe).
-
-**Codici di stato restituiti**: elenco dei codici di stato, se necessario dettagliare e non elencare quelli già previsti da Jackarta in automatico. In questo caso c'è solo lo stato `200 OK` da segnalare:
-
-* 200 OK
 
 ### POST
 
-**Descrizione**: aggiunge un contatto alla rubrica telefonica.
+**Descrizione**: Crea una nuova prenotazione.
 
-**Parametri**: ci deve essere l'header `Content-Type: application/json`.
+**Parametri**: Non sono previsti parametri nel percorso o nella richiesta.
 
-**Body richiesta**: rappresentazione in formato JSON del contatto con i campi `name` e `number` che sono due stringhe.
+**Header richiesta**:
+- Content-Type: application/json
 
-**Risposta**: in caso di successo il body è vuoto e la risorsa creata è indicata nell'header `Location`.
+**Body richiesta**: Rappresentazione in formato JSON dei dati della prenotazione. Il body deve contenere i seguenti campi:
+- `film` (stringa): il titolo del film prenotato.
+- `key` (stringa): la chiave identificativa della prenotazione.
+- `posti` (array di stringhe): l'elenco dei posti prenotati.
 
-**Codici di stato restituiti**:
-
-* 201 Created
-* 400 Bad Request: c'è un errore del client (JSON, campo mancante o altro).
-
-## `/contacts/{id}`
-
-### GET
-
-**Descrizione**: restituisce il contatto con l'id fornito.
-
-**Parametri**: un parametro nel percorso `id` che rappresenta l'identificativo del contatto da restituire.
-
-**Body richiesta**: vuoto.
-
-**Risposta**: In caso di successo la rappresentazione in JSON del contatto, un oggetto JSON con i campi `id` (un intero), `name` e `number` (due stringhe).
+**Risposta**: In caso di successo, la prenotazione viene creata correttamente e viene restituito lo stato `201 Created` con un body vuoto. In caso di errori, vengono restituiti i seguenti stati:
+- `400 Bad Request`: la richiesta è malformata o mancano alcuni campi obbligatori.
+- `409 Conflict`: la prenotazione con la stessa chiave identificativa esiste già.
 
 **Codici di stato restituiti**:
+- 201 Created
+- 400 Bad Request
+- 409 Conflict
 
-* 200 OK
-* 400 Bad Request: c'è un errore del client (ID non valido).
-* 404 Not Found: contatto non trovato.
+
+## `/prenota/elimina`
+
+Questa risorsa consente di eliminare una prenotazione esistente.
+
+
+### POST
+
+**Descrizione**: Elimina una prenotazione.
+
+**Parametri**: Non sono previsti parametri nel percorso o nella richiesta.
+
+**Header richiesta**:
+- Content-Type: application/json
+
+**Body richiesta**: Rappresentazione in formato JSON dei dati della prenotazione da eliminare. Il body deve contenere i seguenti campi:
+- `film` (stringa): il titolo del film della prenotazione da eliminare.
+- `key` (stringa): la chiave identificativa della prenotazione da eliminare.
+
+**Risposta**: In caso di successo, la prenotazione viene eliminata correttamente e viene restituito lo stato `200 OK` con un body vuoto. In caso di errori, vengono restituiti i seguenti stati:
+- `400 Bad Request`: la richiesta è malformata o mancano alcuni campi obbligatori.
+- `404 Not Found`: la prenotazione da eliminare non è stata trovata.
+
+**Codici di stato restituiti**:
+- 200 OK
+- 400 Bad Request
+- 404 Not Found
+
+
+## `/prenota/aggiorna`
+
+Questa risorsa consente di modificare una prenotazione esistente.
+
+
+### PUT
+
+**Descrizione**: Modifica una prenotazione.
+
+**Parametri**: Non sono previsti parametri nel percorso o nella richiesta.
+
+**Header richiesta**:
+- Content-Type: application/json
+
+**Body richiesta**: Rappresentazione in formato JSON dei dati della prenotazione da modificare. Il body deve contenere i seguenti campi:
+- `film` (stringa): il titolo del film della prenotazione da modificare.
+- `key` (stringa): la chiave identificativa della prenotazione da modificare.
+- `posti` (array di stringhe): l'elenco aggiornato dei posti prenotati.
+
+**Risposta**: In caso di successo, la prenotazione viene modificata correttamente e viene restituito lo stato `201 Created` con un body vuoto. In caso di errori, vengono restituiti i seguenti stati:
+- `400 Bad Request`: la richiesta è malformata o mancano alcuni campi obbligatori.
+- `409 Conflict`: la prenotazione non può essere modificata a causa di conflitti o inconsistenze.
+
+**Codici di stato restituiti**:
+- 201 Created
+- 400 Bad Request
+- 409 Conflict
+
+
+Si prega di notare che l'API fa riferimento al server "localhost" sulla porta 3030. Assicurarsi che il server sia in esecuzione e accessibile correttamente prima di utilizzare l'API.

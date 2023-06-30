@@ -130,7 +130,7 @@ public class GestisciPrenotazioni {
             return Response.serverError().build();
         }
    	 
-        return Response.status(Response.Status.CREATED).build();
+        return Response.status(Response.Status.OK).build();
         
 	}
 
