@@ -2,6 +2,29 @@
 
 Di seguito viene fornita la documentazione dell'API REST del progetto "Gestione Prenotazioni".
 
+## `/elenco_proiezioni`
+
+Questa risorsa consente di ottenere l'elenco delle proiezioni disponibili.
+
+
+### GET
+
+**Descrizione**: Restituisce l'elenco delle proiezioni disponibili.
+
+**Parametri**: Non sono previsti parametri nel percorso o nella richiesta.
+
+**Header richiesta**: Non sono previsti header.
+
+**Body richiesta**: Non è previsto un body nella richiesta GET.
+
+**Risposta**: In caso di successo, viene restituito l'elenco delle proiezioni disponibili in formato JSON nel body della risposta. Ogni proiezione è rappresentata come un oggetto JSON con i campi desiderati.
+L'elenco delle proiezioni viene letto da un file di testo chiamato "lista_proiezioni.txt". Se il file non può essere letto, viene restituito uno stato di errore.
+
+**Codici di stato restituiti**:
+- 200 OK: la richiesta è stata elaborata correttamente e viene restituito l'elenco delle proiezioni.
+- 500 Internal Server Error: si è verificato un errore interno durante la lettura del file delle proiezioni.
+
+
 
 ## `/prenota`
 
